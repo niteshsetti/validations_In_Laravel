@@ -17,9 +17,15 @@ class Validation extends Controller
             $post=new Students;
             $post->Email=$request->input('email');
             $post->Password=md5($request->input('password'));
+            $member_exists=Students::where('Email','=',$post->Email)->first();
+            if($member_exists===null){
             $put=$post->save();
             if($put){
               return redirect("/register")->with("status","Registration Success Pls Login");
+            }
+            }
+            else{
+                return redirect("/register")->with("status","Email Already Exists !!! ");
             }
         }
     }

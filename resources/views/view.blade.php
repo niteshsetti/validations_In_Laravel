@@ -14,6 +14,7 @@ $students=Students::all();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+<h2><a href="/main"><center>Go to DashBoard</center></a></h2>
 <h1>Oorwin Members</h1>
 <table id="customers">
 <tr>
