@@ -56,12 +56,14 @@
     <div class="col-sm-9">
       <div class="well">
         <h4>Dashboard</h4>
+        <h3> Welcome , {{session('data')['email']}}</h3>
         <h2>Oorwin Company Details</h2>
       </div>
       <div class="row">
         <div class="col-sm-3">
           <div class="well">
-            <h4><a href="/login">Signout</a></h4>
+            <h4>
+            <a href="/signout">Signout</a></h4>
             <h4><a href="/list">List</a></h4>
           </div>
         </div>

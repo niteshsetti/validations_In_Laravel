@@ -41,6 +41,7 @@ class Validation extends Controller
         $post->Password=md5($request->input('password'));
         $query=DB::select('select *from registrations where Email=? and Password=?',[ $post->Email, $post->Password]);
         if($query){
+            $request->session()->put('data',$request->input());
             return redirect("/main");
         }
         else{

@@ -24,9 +24,39 @@ Route::get('/register', function () {
 });
 Route::post('register',[Validation::class,'register_validation']);
 Route::post('dashboard',[Validation::class,'login_validation']);
-Route::get('/main', function () {
+/*Route::get('/main', function () {
     return view('main');
-});
-Route::get('/list', function () {
+});*/
+/*Route::get('/list', function () {
     return view('view');
+});*/
+Route::get('/main',function(){
+  if(!session()->has('data')){
+      return redirect("login")->with('status','Please Login-First');
+  }
+  else{
+    return view('main');
+  }
 });
+Route::get('/login',function(){
+    if(session()->has('data')){
+        return redirect('/main');
+    }
+    else{
+    return view('/login');
+    }
+  });
+  Route::get('/signout',function(){
+    if(session()->has('data')){
+       session()->forget('data');
+       return redirect('/login');
+    }
+  });
+  Route::get('/list',function(){
+    if(!session()->has('data')){
+        return redirect("login")->with('status','Please Login-First');
+    }
+    else{
+      return view('view');
+    }
+  });
