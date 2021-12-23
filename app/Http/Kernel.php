@@ -46,6 +46,9 @@ class Kernel extends HttpKernel
         ],
         'check'=>[
             \App\Http\Middleware\valids::class,
+        ],
+        'checks'=>[
+            \App\Http\Middleware\valid::class,
         ]
     ];
 

@@ -16,6 +16,9 @@ class valid
      */
     public function handle(Request $request, Closure $next)
     {
+        if(session()->has('data') && (url('login')==$request->url() || url('register')==$request->url())){
+            return back();
+        }
         return $next($request);
     }
 }
