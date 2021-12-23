@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Validation;
+use  App\Http\Controllers\AgeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +15,10 @@ use  App\Http\Controllers\Validation;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return redirect('/age');
+});
+Route::get('/age', function () {
+    return view('age');
 });
 Route::get('/login', function () {
     return view('login');
@@ -24,6 +28,10 @@ Route::get('/register', function () {
 });
 Route::post('register',[Validation::class,'register_validation']);
 Route::post('dashboard',[Validation::class,'login_validation']);
+Route::post('agecheck',[AgeController::class,'age_checker']);
+Route::get('/error',function(){
+  return view('age_un');
+});
 Route::get('/list', function () {
     return view('view');
 });
@@ -35,8 +43,10 @@ Route::get('/list', function () {
   });
   Route::group(['middleware'=>['check']],function(){
    Route::view('main','main');
+   Route::view('view','view');
+
   });
   Route::group(['middleware'=>['checks']],function(){
     Route::view('login','login');
     Route::view('register','register');
-   });
+});
