@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Validation;
 use  App\Http\Controllers\AgeController;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,4 +51,14 @@ Route::get('/list', function () {
   Route::group(['middleware'=>['checks']],function(){
     Route::view('login','login');
     Route::view('register','register');
+});
+Route::get('/Mail',function(){
+ $name="Nitesh";
+  $to="nitesh5d7@sasi.ac.in";
+  $data=array('name'=>'Nitesh','body'=>'Test mail');
+  Mail::send('mail',$data,function($message) use($to,$name){
+    $message->to($to)->subject('Web TEsting Mail');
+
+  });
+  echo "Mail Sent Successfully";
 });
